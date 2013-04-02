@@ -1,5 +1,5 @@
 name 'proteon-java'
-version '0.1'
+version '0.1.0'
 
 author 'Sander Bilo'
 license 'Apache'
