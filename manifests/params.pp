@@ -1,6 +1,6 @@
 # == Class: java::params
 #
-# This class manages Java parameters (none for now).
+# This class manages Java parameters.
 #
 # === Parameters
 #
@@ -20,4 +20,5 @@
 # Copyright 2013 Proteon.
 #
 class java::params {
+  $home = '/usr/lib/jvm/java-6-sun'
 }
