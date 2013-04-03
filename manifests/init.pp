@@ -34,9 +34,9 @@
 # Copyright 2013 Proteon.
 #
 class java(
+  $location,
   $package         = 'sun-java6-jdk',
   $repository_name = 'java-jdk-repository',
-  $location        = '',
   $release         = $::lsbdistcodename,
   $repos           = 'main',
   $key             = undef,
