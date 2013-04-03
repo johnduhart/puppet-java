@@ -57,4 +57,9 @@ class java(
     ensure      => held,
     require     => Apt::Source[$repository_name]
   }
+  
+  profile_d::script {'JAVA_HOME.sh':
+    ensure  => present,
+    content => "export JAVA_HOME=${java::params::home}",
+  }
 }
