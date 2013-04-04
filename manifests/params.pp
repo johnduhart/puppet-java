@@ -1,6 +1,6 @@
 # == Class: java::params
 #
-# This class manages Java parameters.
+# This class manages parameters for the java Puppet class in this module.
 #
 # === Parameters
 #
