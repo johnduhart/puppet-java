@@ -38,16 +38,18 @@
 # Copyright 2013 Proteon.
 #
 class java(
-  $location        = '',
+  $location        = $java::params::location,
   $package         = 'sun-java6-jdk',
   $repository_name = 'java-jdk-repository',
   $release         = $::lsbdistcodename,
   $repos           = 'main',
   $key             = undef,
   $key_server      = 'keyserver.ubuntu.com',
-) {
+) inherits java::params {
 
-  include java::params
+  if $location == '' {
+    fail('You must set a repository location')
+  }
 
   apt::source { $repository_name:
     location    => $location,

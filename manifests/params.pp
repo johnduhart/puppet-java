@@ -21,4 +21,5 @@
 #
 class java::params {
   $home = '/usr/lib/jvm/java-6-sun'
+  $location = ''
 }
