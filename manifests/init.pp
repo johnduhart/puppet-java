@@ -1,4 +1,8 @@
-# This class installs java.
+# ==== Class: java
+#
+# This class installs Oracle's Java version 1.6 from a given repository. The
+# given repository is added to the Apt sources and the JAVA_HOME environment
+# variable is set for the default profile.
 #
 # === Parameters
 #
