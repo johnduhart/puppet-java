@@ -20,6 +20,12 @@
 # Copyright 2013 Proteon.
 #
 class java::params {
-  $home = '/usr/lib/jvm/java-6-sun'
-  $location = ''
+    $home = '/usr/lib/jvm/java-6-sun'
+    $location = 'http://ppa.launchpad.net/webupd8team/java/ubuntu'
+    $package = 'oracle-java6-installer'
+    $repository_name = 'webupd8team'
+    $release = $::lsbdistcodename
+    $repos = 'main'
+    $key = 'EEA14886'
+    $key_server = 'keyserver.ubuntu.com'
 }

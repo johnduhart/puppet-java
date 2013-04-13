@@ -1,8 +1,11 @@
 # ==== Class: java
 #
-# This class installs Oracle's Java version 1.6 from a given repository. The
+# This class installs Oracle's Java from a given repository. The
 # given repository is added to the Apt sources and the JAVA_HOME environment
-# variable is set for the default profile.
+# variable is set for the default profile. By default the package provided
+# by the webupd8.com team is used. 
+# See: http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html 
+# for details
 #
 # === Parameters
 #
@@ -37,36 +40,34 @@
 #
 # Copyright 2013 Proteon.
 #
-class java(
-  $location        = $java::params::location,
-  $package         = 'sun-java6-jdk',
-  $repository_name = 'java-jdk-repository',
-  $release         = $::lsbdistcodename,
-  $repos           = 'main',
-  $key             = undef,
-  $key_server      = 'keyserver.ubuntu.com',
-) inherits java::params {
+class java (
+    $location        = $java::params::location,
+    $package         = $java::params::package,
+    $repository_name = $java::params::repository_name,
+    $release         = $java::params::release,
+    $repos           = $java::params::repos,
+    $key             = $java::params::key,
+    $key_server      = $java::params::key_server,) inherits java::params {
+    apt::source { $repository_name:
+        location   => $location,
+        release    => $release,
+        repos      => $repos,
+        key        => $key,
+        key_server => $key_server,
+    }
 
-  if $location == '' {
-    fail('You must set a repository location')
-  }
+    package { $package:
+        ensure  => held,
+        require => [Apt::Source[$repository_name], Exec['accepted-oracle-license-v1-1']]
+    }
 
-  apt::source { $repository_name:
-    location    => $location,
-    release     => $release,
-    repos       => $repos,
-    key         => $key,
-    key_server  => $key_server,
-  }
+    exec { 'accepted-oracle-license-v1-1':
+        command => "echo ${java::params::package} shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections",
+        unless  => "/usr/bin/debconf-show ${java::params::package} | grep 'shared/accepted-oracle-license-v1-1: true'",
+    }
 
-  package { $package:
-    ensure      => held,
-    require     => Apt::Source[$repository_name]
-  }
-
-  profile_d::script {'JAVA_HOME.sh':
-    ensure  => present,
-    content => "export JAVA_HOME=${java::params::home}",
-  }
-
+    profile_d::script { 'JAVA_HOME.sh':
+        ensure  => present,
+        content => "export JAVA_HOME=${java::params::home}",
+    }
 }
