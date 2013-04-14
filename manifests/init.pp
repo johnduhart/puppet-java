@@ -65,9 +65,4 @@ class java (
         command => "echo ${java::params::package} shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections",
         unless  => "/usr/bin/debconf-show ${java::params::package} | grep 'shared/accepted-oracle-license-v1-1: true'",
     }
-
-    profile_d::script { 'JAVA_HOME.sh':
-        ensure  => present,
-        content => "export JAVA_HOME=${java::params::home}",
-    }
 }

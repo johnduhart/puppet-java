@@ -20,9 +20,9 @@
 # Copyright 2013 Proteon.
 #
 class java::params {
-    $home = '/usr/lib/jvm/java-6-sun'
+    $home = '/usr/lib/jvm/default-java'
     $location = 'http://ppa.launchpad.net/webupd8team/java/ubuntu'
-    $package = 'oracle-java6-installer'
+    $package = ['oracle-java6-installer','oracle-java6-set-default']
     $repository_name = 'webupd8team'
     $release = $::lsbdistcodename
     $repos = 'main'
