@@ -62,7 +62,7 @@ class java (
     }
 
     exec { 'accepted-oracle-license-v1-1':
-        command => "echo ${java::params::package} shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections",
+        command => "/bin/echo ${java::params::package} shared/accepted-oracle-license-v1-1 select true | /usr/bin/sudo /usr/bin/debconf-set-selections",
         unless  => "/usr/bin/debconf-show ${java::params::package} | grep 'shared/accepted-oracle-license-v1-1: true'",
     }
 }
