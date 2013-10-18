@@ -3,8 +3,8 @@
 # This class installs Oracle's Java from a given repository. The
 # given repository is added to the Apt sources and the JAVA_HOME environment
 # variable is set for the default profile. By default the package provided
-# by the webupd8.com team is used. 
-# See: http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html 
+# by the webupd8.com team is used.
+# See: http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html
 # for details
 #
 # === Parameters
@@ -62,12 +62,12 @@ class java (
     }
 
     exec { 'accepted-oracle-license-v1-1':
-        command => "/bin/echo ${java::params::package} shared/accepted-oracle-license-v1-1 select true | /usr/bin/sudo /usr/bin/debconf-set-selections",
-        unless  => "/usr/bin/debconf-show ${java::params::package} | grep 'shared/accepted-oracle-license-v1-1: true'",
+        command => "/bin/echo ${package} shared/accepted-oracle-license-v1-1 select true | /usr/bin/sudo /usr/bin/debconf-set-selections",
+        unless  => "/usr/bin/debconf-show ${package} | grep 'shared/accepted-oracle-license-v1-1: true'",
     }
 
     profile_d::script { 'JAVA_HOME.sh':
         ensure  => present,
-        content => 'export JAVA_HOME=/usr/lib/jvm/java-6-sun/',
+        content => "export JAVA_HOME=${home}",
     }
 }
