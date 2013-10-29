@@ -7,26 +7,31 @@ See: http://www.webupd8.org/2012/01/install-oracle-java-jdk-7-in-ubuntu-via.html
 Depencendies:
 
     'puppetlabs/apt', '>=1.1.0'
-    'klangrud/profile_d', '>=0.0.1'
 
 Basic usage
 -------------------------
-To install Oracle Java JDK 1.6 and set JAVA_HOME
+To install Oracle Java JDK 1.6
 
-    include java
+    class { 'java::oracle_1_6_0': }
 
 To install Oracle JAVA JDK 1.8
 
-    class { 'java':
-      package => 'oracle-java8-installer',
-    }
+    class { 'java::oracle_1_8_0':}
+    
+To install OpenJDK JAVA 1.7
 
-To install from your own apt-repositories
+    class { 'java::openjdk_1_7_0':}
 
-    class { 'java':
-      location        => 'http://apt.yourcompany.com',
-      package 		  => 'oracle-java7-installer',
-      repository_name => $java::params::repository_name,
-      key             => 'EEAA1234,
-      key_server      => 'gpg.yourcompany.com',
+
+Include the module in your own applications
+-------------------------
+Include the class into your application if not defined elsewhere
+
+    if (!defined(Class['java::oracle_1_7_0'])) {
+        class { 'java::oracle_1_7_0': }
     }
+    
+Make the JAVA_HOME variable available to your application templates
+    
+    $java_home = "::java::${java_version}::home"
+    

@@ -1,6 +1,6 @@
-# == Class: java::params
+# == Class: java::oracle::params
 #
-# This class manages parameters for the java Puppet class in this module.
+# This class manages parameters for the java::oracle Puppet class in this module.
 #
 # === Parameters
 #
@@ -19,13 +19,11 @@
 #
 # Copyright 2013 Proteon.
 #
-class java::params {
-    $home = '/usr/lib/jvm/default-java'
+class java::oracle::params {
     $location = 'http://ppa.launchpad.net/webupd8team/java/ubuntu'
-    $package = ['oracle-java6-installer','oracle-java6-set-default']
     $repository_name = 'webupd8team'
     $release = $::lsbdistcodename
     $repos = 'main'
     $key = 'EEA14886'
-    $key_server = 'keyserver.ubuntu.com'
+    $key_server = 'hkp://keyserver.ubuntu.com:80'
 }
