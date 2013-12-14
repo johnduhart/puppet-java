@@ -2,7 +2,7 @@ name 'proteon-java'
 version '0.1.6'
 
 author 'Sander Bilo'
-license 'Apache'
+license 'Apache 2.0'
 project_page 'http://github.com/Proteon/puppet-java'
 source 'git://github.com/Proteon/puppet-java.git'
 summary 'Java module'
