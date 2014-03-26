@@ -1,5 +1,5 @@
 name 'proteon-java'
-version '0.1.6'
+version '0.1.7'
 
 author 'Sander Bilo'
 license 'Apache 2.0'
@@ -8,4 +8,3 @@ source 'git://github.com/Proteon/puppet-java.git'
 summary 'Java module'
 description 'Puppet code for deploying and configuring Oracle Java on Debian-like servers'
 dependency 'puppetlabs/apt', '>=1.1.0'
-dependency 'proteon-profile_d', '>=0.1.1'
