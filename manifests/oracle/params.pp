@@ -25,5 +25,5 @@ class java::oracle::params {
     $release = $::lsbdistcodename
     $repos = 'main'
     $key = 'EEA14886'
-    $key_server = 'keyserver.ubuntu.com'
+    $key_server = 'hkp://keyserver.ubuntu.com:80'
 }
