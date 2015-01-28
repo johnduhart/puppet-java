@@ -5,7 +5,7 @@ class java::oracle_1_7_0 (
 
     package { $package:
         ensure  => installed,
-        require => Class['oracle']
+        require => [Class['oracle'], Exec["${package}accepted-oracle-license-v1-1"]]
     }
 
     exec { "${package}accepted-oracle-license-v1-1":

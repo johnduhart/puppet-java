@@ -6,7 +6,7 @@ class java::oracle_1_6_0 (
     if (!defined(Package[$package])) {
         package { $package:
             ensure  => installed,
-            require => Class['oracle']
+            require => [Class['oracle'], Exec["${package}accepted-oracle-license-v1-1"]]
         }
     }
 
